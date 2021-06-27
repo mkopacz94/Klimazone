@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  geoapiUrl: 'https://api.geoapify.com/v1/geocode/search?',
+  geoapiKey: '959e02afa2ac4a01bb1bc0ed9f261073',
+  openweatherapiUrl: 'https://api.openweathermap.org/data/2.5/onecall?',
+  openweatherapiKey: '38f87b6348faa7a3f6e3d55c3e385e69'
 };
 
 /*
@@ -13,4 +17,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
