@@ -1,0 +1,15 @@
+.current-weather {
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    height: 300px;
+}
+.horizontally-scrollable {
+    overflow-y: hidden;
+}
+.card {
+    min-width: 150px;
+    max-width: 150px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
