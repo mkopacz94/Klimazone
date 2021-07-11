@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ForecastComponent } from './components/forecast/forecast.component';
 import { DayForecastComponent } from './components/day-forecast/day-forecast.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { FoundLocationComponent } from './components/found-location/found-location.component';
 
 @NgModule({
   declarations: [
     ForecastComponent,
-    DayForecastComponent
+    DayForecastComponent,
+    FoundLocationComponent
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularSvgIconModule
   ],
   exports: [
     ForecastComponent

@@ -19,11 +19,12 @@ export class AppComponent {
     this.locationService.getUserLocation()
       .subscribe(location => console.log(location));
       
-    this.geolocationService.getGeolocation("Heraklion")
+    this.geolocationService.getGeolocation("Płaza")
       .subscribe(location => {
-        this.forecastService.getForecast(
-          location[0].latitude, location[0].longitude)
-          .subscribe(forecast => console.log(forecast));
+        console.log(location);
+        // this.forecastService.getForecast(
+        //   location[0].latitude, location[0].longitude)
+        //   .subscribe(forecast => console.log(forecast));
       })
 
     

@@ -2,23 +2,46 @@
     <div class="row justify-content-center">
         <div class="col-11 col-md-8 col-lg-6">
             <div class="search-container d-flex">
-                <input type="text" class="form-control" placeholder="Wyszukaj miasto...">
-                <button type="button" class="btn btn-primary ml-1">Szukaj</button>
+                <button type="button" class="btn btn-light btn-localization"></button>
+                <div class="w-100 search-input">
+                    <input type="text" class="form-control search-city-input ml-2 pr-5"
+                        placeholder="Wyszukaj miasto...">
+                    <svg-icon class="search-icon" src="../../../assets/icons/search_icon.svg" [svgStyle]="{ 'width':'auto', 'height': '20px', 'fill':'rgb(150,50,255)' }"></svg-icon>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row mt-5 justify-content-center">
+    <!-- <div class="row mt-5 justify-content-center">
         <div class="col-8 col-md-6 col-lg-4 current-weather">
-
+            <p class="text-center text-white city-text">Kraków, Polska</p>
+            <div class="text-center mt-4">
+                <svg-icon src="../../../assets/icons/clear_sky.svg" [svgStyle]="{ 'width':'60%', 'height': 'auto' }">
+                </svg-icon>
+            </div>
+            <p class="text-center text-white weather-text mt-4">Bezchmurnie</p>
+            <h1 class="text-center text-white">21°C</h1>
         </div>
-    </div>
+    </div> -->
     <div class="row mt-5 justify-content-center">
-        <div class="d-flex flex-nowrap horizontally-scrollable px-2">
-            <app-day-forecast class="mx-2"></app-day-forecast>
-            <app-day-forecast class="mx-2"></app-day-forecast>
-            <app-day-forecast class="mx-2"></app-day-forecast>
-            <app-day-forecast class="mx-2"></app-day-forecast>
-            <app-day-forecast class="mx-2"></app-day-forecast>
+        <div class="col-11 col-md-8 col-lg-6 current-weather">
+           <h5 class="text-white mb-3">Znaleziono kilka pasujących lokalizacji:</h5>
+           <app-found-location class="d-block my-3"></app-found-location>
+           <app-found-location class="d-block my-3"></app-found-location>
+           <app-found-location class="d-block my-3"></app-found-location>
         </div>
     </div>
+    <!-- <div class="d-flex justify-content-center mt-5">
+        <div class="spinner-border text-white" style="width: 3rem; height: 3rem;" role="status">
+          <span class="sr-only text-white">Loading...</span>
+        </div>
+      </div> -->
+    <!-- <div class="row mt-5 justify-content-center">
+        <div class="d-flex flex-nowrap horizontally-scrollable px-2">
+            <app-day-forecast class="mx-3"></app-day-forecast>
+            <app-day-forecast class="mx-3"></app-day-forecast>
+            <app-day-forecast class="mx-3"></app-day-forecast>
+            <app-day-forecast class="mx-3"></app-day-forecast>
+            <app-day-forecast class="mx-3"></app-day-forecast>
+        </div>
+    </div> -->
 </div>

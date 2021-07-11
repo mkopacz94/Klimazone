@@ -33,6 +33,7 @@ export class GeolocationService {
                 {
                   city: feature.properties.city,
                   country: feature.properties.country,
+                  county: feature.properties?.county ?? "",
                   latitude: feature.properties.lat,
                   longitude: feature.properties.lon
                 }

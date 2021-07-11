@@ -1,0 +1,12 @@
+.location-container {
+    cursor: pointer;
+    width: 100%;
+    background: #FFFFFF20;
+    border-radius: 10px;
+    transition: all .2s ease-in-out
+}
+.location-container:hover
+{
+    transform: scale(1.02);
+    background: #FFFFFF30;
+}

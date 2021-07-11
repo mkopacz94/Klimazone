@@ -29,6 +29,7 @@ export class ForecastService {
       .pipe(
         map((response) => {
           let currentForecast: CurrentForecast = {
+            
             date: new Date(response.current.dt * 1000),
             temperature: response.current.temp,
             description: response.current.weather[0].description,
