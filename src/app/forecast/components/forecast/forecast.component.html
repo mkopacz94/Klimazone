@@ -50,7 +50,7 @@
                 <p class="text-center text-white weather-text mt-4">{{currentForecast?.description | titlecase}}</p>
                 <h1 class="text-center text-white">{{currentForecast?.temperature | number: '1.0-1'}}°C</h1>
                 <p class="text-center text-white day-night-temperature mt-2">
-                    {{dailyForecast[0]?.dayTemperature | number: '1.0-1'}}°C / {{dailyForecast[0]?.nightTemperature | number: '1.0-1'}}°C
+                    {{dailyForecast[0]?.dayTemperature | number: '1.0-0'}}°C / {{dailyForecast[0]?.nightTemperature | number: '1.0-0'}}°C
                 </p>
             </div>
         </div>
