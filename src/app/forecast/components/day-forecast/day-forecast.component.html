@@ -1,2 +1,10 @@
-<div class="day-weather-card">
+<div class="day-weather-card p-3">
+    <p class="text-center text-white">{{weekDay}}</p>
+    <div class="text-center mt-3">
+        <svg-icon [src]="dayForecast.icon" [svgStyle]="{ 'width':'60%', 'height': 'auto' }">
+        </svg-icon>
+    </div>
+    <p class="text-center text-white mt-3 mb-0">
+        {{dayForecast.dayTemperature | number: '1.0-0'}}°C / {{dayForecast.nightTemperature | number: '1.0-0'}}°C
+    </p>
 </div>

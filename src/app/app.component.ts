@@ -16,17 +16,5 @@ export class AppComponent {
     private locationService: UserLocationService) {}
 
   ngOnInit() {
-    this.locationService.getUserLocation()
-      .subscribe(location => console.log(location));
-      
-    this.geolocationService.getGeolocation("Płaza")
-      .subscribe(location => {
-        console.log(location);
-        // this.forecastService.getForecast(
-        //   location[0].latitude, location[0].longitude)
-        //   .subscribe(forecast => console.log(forecast));
-      })
-
-    
   }
 }

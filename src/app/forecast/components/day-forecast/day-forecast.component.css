@@ -1,7 +1,5 @@
 .day-weather-card {
-    background: white;
-    opacity: 0.2;
-    width: 130px;
-    height: 150px;
+    background: #FFFFFF20;
+    width: 150px;
     border-radius: 10px;
 }

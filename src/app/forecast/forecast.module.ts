@@ -5,6 +5,7 @@ import { ForecastComponent } from './components/forecast/forecast.component';
 import { DayForecastComponent } from './components/day-forecast/day-forecast.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { FoundLocationComponent } from './components/found-location/found-location.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { FoundLocationComponent } from './components/found-location/found-locati
   imports: [
     CommonModule,
     HttpClientModule,
-    AngularSvgIconModule
+    AngularSvgIconModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     ForecastComponent

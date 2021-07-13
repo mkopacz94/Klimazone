@@ -17,7 +17,6 @@ export class UserLocationService {
             latitude: success.coords.latitude,
             longitude: success.coords.longitude
           };
-          
           obs.next(geolocation);
           obs.complete();
         }, error => {

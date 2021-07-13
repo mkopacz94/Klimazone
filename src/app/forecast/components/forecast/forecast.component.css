@@ -2,19 +2,30 @@
     border-radius: 15px !important;
 }
 .btn-localization {
-    height: 35;
-    width: 40px;
+    height: auto;
+    width: 43px;
     border-radius: 100%;
+    padding: 0;
+    padding-bottom: 2px;
 }
 .search-input {
     position: relative;
 }
-.search-icon {
+.btn-search-icon {
+    background: transparent;
     cursor: pointer;
     position: absolute;
+    padding: 0;
     right: 5px;
     top: 50%;
     transform: translateY(-55%);
+}
+.btn-search-icon:hover {
+   border-color: transparent;
+}
+.btn-search-icon:active, .btn-search-icon:focus {
+    background: transparent !important;
+    border-color: transparent !important;
 }
 /* .current-weather {
     border-style: solid;
@@ -30,12 +41,9 @@
     font-size: 1.8em;
     font-weight: lighter;
 }
+.day-night-temperature {
+    font-size: 1.2em;
+}
 .horizontally-scrollable {
     overflow-y: hidden;
-}
-.card {
-    min-width: 150px;
-    max-width: 150px;
-    margin-left: 10px;
-    margin-right: 10px;
 }

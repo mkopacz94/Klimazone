@@ -1,47 +1,65 @@
 <div class="container pb-5">
     <div class="row justify-content-center">
         <div class="col-11 col-md-8 col-lg-6">
-            <div class="search-container d-flex">
-                <button type="button" class="btn btn-light btn-localization"></button>
-                <div class="w-100 search-input">
-                    <input type="text" class="form-control search-city-input ml-2 pr-5"
-                        placeholder="Wyszukaj miasto...">
-                    <svg-icon class="search-icon" src="../../../assets/icons/search_icon.svg" [svgStyle]="{ 'width':'auto', 'height': '20px', 'fill':'rgb(150,50,255)' }"></svg-icon>
+            <form (submit)="searchLocations()">
+                <div class="search-container d-flex">
+                    <button type="button" class="btn btn-light btn-localization" (click)="getMyLocation()">
+                        <svg-icon src="../../../assets/icons/location_icon.svg"
+                            [svgStyle]="{ 'width':'17px', 'height': '17px' }"></svg-icon>
+                    </button>
+                    <div class="w-100 search-input">
+                        <input #searchInput type="search" class="form-control search-city-input ml-2 pr-5"
+                            placeholder="Wyszukaj miasto..." [formControl]="location">
+                        <button type="submit" class="btn btn-light shadow-none btn-search-icon">
+                            <svg-icon class="search-icon" src="../../../assets/icons/search_icon.svg"
+                                [svgStyle]="{ 'width':'auto', 'height': '20px' }"></svg-icon>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <ng-container *ngIf="showFewLocations()">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-11 col-md-8 col-lg-6 current-weather">
+                <h5 class="text-white mb-3">Znaleziono kilka pasujących lokalizacji:</h5>
+                <div *ngFor="let location of foundLocations" (click)="locationClicked(location)">
+                    <app-found-location [location]="location" class="d-block my-3"></app-found-location>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- <div class="row mt-5 justify-content-center">
-        <div class="col-8 col-md-6 col-lg-4 current-weather">
-            <p class="text-center text-white city-text">Kraków, Polska</p>
-            <div class="text-center mt-4">
-                <svg-icon src="../../../assets/icons/clear_sky.svg" [svgStyle]="{ 'width':'60%', 'height': 'auto' }">
-                </svg-icon>
+    </ng-container>
+
+    <ng-container *ngIf="showLoading()">
+        <div class="d-flex justify-content-center mt-5">
+            <div class="spinner-border text-white" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only text-white">Loading...</span>
             </div>
-            <p class="text-center text-white weather-text mt-4">Bezchmurnie</p>
-            <h1 class="text-center text-white">21°C</h1>
         </div>
-    </div> -->
-    <div class="row mt-5 justify-content-center">
-        <div class="col-11 col-md-8 col-lg-6 current-weather">
-           <h5 class="text-white mb-3">Znaleziono kilka pasujących lokalizacji:</h5>
-           <app-found-location class="d-block my-3"></app-found-location>
-           <app-found-location class="d-block my-3"></app-found-location>
-           <app-found-location class="d-block my-3"></app-found-location>
+    </ng-container>
+
+    <ng-container *ngIf="showSingleLocation()">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-8 col-md-6 col-lg-4 current-weather">
+                <p class="text-center text-white city-text">{{selectedLocation?.city}}</p>
+                <div class="text-center mt-4">
+                    <svg-icon [src]="currentForecast?.icon" [svgStyle]="{ 'width':'60%', 'height': 'auto' }">
+                    </svg-icon>
+                </div>
+                <p class="text-center text-white weather-text mt-4">{{currentForecast?.description | titlecase}}</p>
+                <h1 class="text-center text-white">{{currentForecast?.temperature | number: '1.0-1'}}°C</h1>
+                <p class="text-center text-white day-night-temperature mt-2">
+                    {{dailyForecast[0]?.dayTemperature | number: '1.0-1'}}°C / {{dailyForecast[0]?.nightTemperature | number: '1.0-1'}}°C
+                </p>
+            </div>
         </div>
-    </div>
-    <!-- <div class="d-flex justify-content-center mt-5">
-        <div class="spinner-border text-white" style="width: 3rem; height: 3rem;" role="status">
-          <span class="sr-only text-white">Loading...</span>
+        <div class="row mt-5 justify-content-center">
+            <div class="d-flex flex-nowrap horizontally-scrollable px-2">
+                <div *ngFor="let dayForecast of dailyForecast | slice:1:6" class="mx-3">
+                    <app-day-forecast [dayForecast]="dayForecast"></app-day-forecast>
+                </div>
+            </div>
         </div>
-      </div> -->
-    <!-- <div class="row mt-5 justify-content-center">
-        <div class="d-flex flex-nowrap horizontally-scrollable px-2">
-            <app-day-forecast class="mx-3"></app-day-forecast>
-            <app-day-forecast class="mx-3"></app-day-forecast>
-            <app-day-forecast class="mx-3"></app-day-forecast>
-            <app-day-forecast class="mx-3"></app-day-forecast>
-            <app-day-forecast class="mx-3"></app-day-forecast>
-        </div>
-    </div> -->
+    </ng-container> 
 </div>

@@ -10,3 +10,6 @@
     transform: scale(1.02);
     background: #FFFFFF30;
 }
+.location-text {
+    pointer-events: none;
+}

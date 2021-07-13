@@ -25,7 +25,7 @@
      showgrid="false"
      inkscape:zoom="0.37059484"
      inkscape:cx="-322.45457"
-     inkscape:cy="476.26136"
+     inkscape:cy="476.26135"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
@@ -58,13 +58,13 @@
      id="layer1"
      transform="translate(-11.921819,-4.7823992)">
     <circle
-       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:17.565;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#8e8e8e;stroke-width:17.565;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path31"
        cx="74.963936"
        cy="67.824516"
        r="54.259617" />
     <path
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:19.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-opacity:1;stroke:#8e8e8e;stroke-width:19.665;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect1324"
        width="1.139488"
        height="72.253609"
