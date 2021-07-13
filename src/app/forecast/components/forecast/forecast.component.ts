@@ -27,6 +27,7 @@ export class ForecastComponent implements OnInit {
   readStatus = ForecastReadStatus.None;
   location = new FormControl('');
   foundLocations = new Array<Location>();
+  
   selectedLocation: Location;
   currentForecast: CurrentForecast;
   dailyForecast = new Array<DayForecast>();
@@ -44,13 +45,6 @@ export class ForecastComponent implements OnInit {
 
     this.userLocationService.getUserLocation()
       .subscribe(geolocation => {
-        this.selectedLocation = {
-          city: "Twoja lokalizacja",
-          county: "",
-          country: "",
-          latitude: 0,
-          longitude: 0,
-        };
         this.getForecast(geolocation.latitude, geolocation.longitude);
       }, error => {
         this.readStatus = ForecastReadStatus.Error;
@@ -71,6 +65,7 @@ export class ForecastComponent implements OnInit {
           this.readStatus = ForecastReadStatus.FewLocations;
         }
         else {
+          this.setLocation(this.foundLocations[0]);
           this.getForecast(
             this.foundLocations[0].latitude,
             this.foundLocations[0].longitude);
@@ -81,7 +76,7 @@ export class ForecastComponent implements OnInit {
   }
 
   locationClicked(location: Location) {
-    this.selectedLocation = location;
+    this.setLocation(location);
     this.getForecast(location.latitude, location.longitude);
   }
 
@@ -96,6 +91,10 @@ export class ForecastComponent implements OnInit {
       this.dailyForecast = forecast.daily;
       this.readStatus = ForecastReadStatus.SingleLocation;
     });
+  }
+
+  setLocation(location: Location) {
+    this.selectedLocation = location;
   }
 
   showLoading() : boolean {
