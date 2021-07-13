@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="95.635628mm"
+   height="61.067711mm"
+   viewBox="0 0 95.635628 61.067711"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="scattered_clouds.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.72337262"
+     inkscape:cx="26562.382"
+     inkscape:cy="-25.574648"
+     inkscape:window-width="1263"
+     inkscape:window-height="991"
+     inkscape:window-x="-8"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Warstwa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-50.93843,-67.583926)">
+    <path
+       id="rect846"
+       style="fill:none;stroke:#ffffff;stroke-width:7.55906;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 392.60547,259.21484 a 83.623835,83.623835 0 0 0 -82.55078,70.43164 65.664634,65.664634 0 0 0 -24.58594,-4.77929 65.664634,65.664634 0 0 0 -65.66406,65.66406 65.664634,65.664634 0 0 0 1.92773,15.66992 c -14.8901,5.61544 -25.42969,19.95931 -25.42969,36.86133 0,21.82693 17.57152,39.40039 39.39844,39.40039 h 275.09961 c 21.82693,0 39.40039,-17.57346 39.40039,-39.40039 0,-14.07973 -7.31811,-26.37955 -18.36719,-33.34375 a 50.458082,50.458082 0 0 0 7.30664,-26.09961 50.458082,50.458082 0 0 0 -50.45703,-50.45703 50.458082,50.458082 0 0 0 -12.84179,1.69727 83.623835,83.623835 0 0 0 -83.23633,-75.64454 z"
+       transform="scale(0.26458333)" />
+  </g>
+</svg>
