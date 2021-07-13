@@ -37,6 +37,7 @@ export class ForecastComponent implements OnInit {
     private forecastService: ForecastService) { }
 
   ngOnInit(): void {
+    this.getMyLocation();
   } 
 
   getMyLocation() {
@@ -45,6 +46,13 @@ export class ForecastComponent implements OnInit {
 
     this.userLocationService.getUserLocation()
       .subscribe(geolocation => {
+        this.setLocation({
+          city: "Twoja aktualna lokalizacja",
+          county: "",
+          country: "",
+          longitude: 0,
+          latitude :0
+        });
         this.getForecast(geolocation.latitude, geolocation.longitude);
       }, error => {
         this.readStatus = ForecastReadStatus.Error;
