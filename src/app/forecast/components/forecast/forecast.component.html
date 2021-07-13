@@ -4,14 +4,14 @@
             <form (submit)="searchLocations()">
                 <div class="search-container d-flex">
                     <button type="button" class="btn btn-light btn-localization" (click)="getMyLocation()">
-                        <svg-icon src="/assets/icons/location_icon.svg"
+                        <svg-icon src="assets/icons/location_icon.svg"
                             [svgStyle]="{ 'width':'17px', 'height': '17px' }"></svg-icon>
                     </button>
                     <div class="w-100 search-input">
                         <input #searchInput type="search" class="form-control search-city-input ml-2 pr-5"
                             placeholder="Wyszukaj miasto..." [formControl]="location">
                         <button type="submit" class="btn btn-light shadow-none btn-search-icon">
-                            <svg-icon class="search-icon" src="/assets/icons/search_icon.svg"
+                            <svg-icon class="search-icon" src="assets/icons/search_icon.svg"
                                 [svgStyle]="{ 'width':'auto', 'height': '20px' }"></svg-icon>
                         </button>
                     </div>
