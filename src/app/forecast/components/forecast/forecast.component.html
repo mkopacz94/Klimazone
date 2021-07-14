@@ -1,7 +1,7 @@
 <div class="container pb-5">
     <div class="row justify-content-center">
         <div class="col-11 col-md-8 col-lg-6">
-            <form (submit)="searchLocations()">
+            <form @searchFormLoaded (submit)="searchLocations()">
                 <div class="search-container d-flex">
                     <button type="button" class="btn btn-light btn-localization" (click)="getMyLocation()">
                         <svg-icon src="assets/icons/location_icon.svg"
@@ -22,9 +22,9 @@
     
     <ng-container *ngIf="showFewLocations()">
         <div class="row mt-5 justify-content-center">
-            <div class="col-11 col-md-8 col-lg-6 current-weather">
+            <div class="col-11 col-md-8 col-lg-6 current-weather" @fadeSlideIn>
                 <h5 class="text-white mb-3">Znaleziono kilka pasujących lokalizacji:</h5>
-                <div *ngFor="let location of foundLocations" (click)="locationClicked(location)">
+                <div *ngFor="let location of foundLocations" class="location-list-element" (click)="locationClicked(location)">
                     <app-found-location [location]="location" class="d-block my-3"></app-found-location>
                 </div>
             </div>
@@ -40,7 +40,7 @@
     </ng-container>
 
     <ng-container *ngIf="showSingleLocation()">
-        <div class="row mt-5 justify-content-center">
+        <div class="row mt-5 justify-content-center" @weatherLoaded>
             <div class="col-8 col-md-6 col-lg-4 current-weather">
                 <p class="text-center text-white city-text">{{selectedLocation?.city}}</p>
                 <div class="text-center mt-4">
@@ -55,8 +55,8 @@
             </div>
         </div>
         <div class="row mt-5 justify-content-center">
-            <div class="d-flex flex-nowrap horizontally-scrollable px-2 pb-4">
-                <div *ngFor="let dayForecast of dailyForecast | slice:1:6" class="mx-3">
+            <div class="d-flex flex-nowrap horizontally-scrollable px-2 pb-4" @fadeIn>
+                <div *ngFor="let dayForecast of dailyForecast | slice:1:6" class="fade-in-element mx-3">
                     <app-day-forecast [dayForecast]="dayForecast"></app-day-forecast>
                 </div>
             </div>
