@@ -67,6 +67,8 @@ export class ForecastComponent implements OnInit {
   currentForecast: CurrentForecast;
   dailyForecast = new Array<DayForecast>();
 
+  @ViewChild('searchInput') searchElement: ElementRef;
+
   constructor(private geolocationService: GeolocationService,
     private userLocationService: UserLocationService,
     private forecastService: ForecastService) { }
@@ -98,6 +100,8 @@ export class ForecastComponent implements OnInit {
 
     if (!this.location.value)
       return;
+
+    this.searchElement.nativeElement.blur();
 
     this.readStatus = ForecastReadStatus.Loading;
 
