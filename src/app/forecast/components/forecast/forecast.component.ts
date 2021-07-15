@@ -43,7 +43,7 @@ enum ForecastReadStatus {
             animate('.3s ease-out', style({ opacity: 1 }))
           ])
         ])
-      ]),
+      ])
     ]),
     trigger('fadeSlideIn', [
       transition(':enter', [
