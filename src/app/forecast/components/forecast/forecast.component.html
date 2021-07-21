@@ -3,14 +3,15 @@
         <div class="col-11 col-md-8 col-lg-6">
             <form @searchFormLoaded (submit)="searchLocations()">
                 <div class="search-container d-flex">
-                    <button type="button" class="btn btn-light btn-localization" (click)="getMyLocation()">
+                    <button type="button" class="btn btn-light btn-localization" (click)="readCurrentLocationWeather()">
                         <svg-icon src="assets/icons/location_icon.svg"
                             [svgStyle]="{ 'width':'17px', 'height': '17px' }"></svg-icon>
                     </button>
                     <div class="w-100 search-input">
                         <input #searchInput type="search" class="form-control search-city-input ml-2 pr-5"
                             placeholder="Wyszukaj miasto..." [formControl]="location">
-                        <button type="submit" class="btn btn-light shadow-none btn-search-icon">
+                        <button type="submit" class="btn btn-light shadow-none btn-search-icon"
+                            [disabled]="location.invalid">
                             <svg-icon class="search-icon" src="assets/icons/search_icon.svg"
                                 [svgStyle]="{ 'width':'auto', 'height': '20px' }"></svg-icon>
                         </button>
@@ -19,7 +20,13 @@
             </form>
         </div>
     </div>
-    
+
+    <ng-container *ngIf="showNoLocationFound()">
+        <div class="d-flex justify-content-center mt-5">
+            <p class="text-white">Nie zaleziono podanej lokalizacji.</p>
+        </div>
+    </ng-container>
+
     <ng-container *ngIf="showFewLocations()">
         <div class="row mt-5 justify-content-center">
             <div class="col-11 col-md-8 col-lg-6 current-weather" @fadeSlideIn>
@@ -42,7 +49,7 @@
     <ng-container *ngIf="showSingleLocation()">
         <div class="row mt-5 justify-content-center" @weatherLoaded>
             <div class="col-8 col-md-6 col-lg-4 current-weather">
-                <p class="text-center text-white city-text">{{selectedLocation?.city}}</p>
+                <p class="text-center text-white city-text">{{locationName}}</p>
                 <div class="text-center mt-4">
                     <svg-icon [src]="currentForecast?.icon" [svgStyle]="{ 'width':'60%', 'height': 'auto' }">
                     </svg-icon>

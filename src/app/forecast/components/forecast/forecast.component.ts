@@ -1,10 +1,12 @@
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { ThrowStmt } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { switchMap } from 'rxjs/operators';
+import { weatherAnimations } from '../../animations/weatherAnimations';
 import { CurrentForecast } from '../../models/currentForecast';
 import { DayForecast } from '../../models/dayForecast';
+import { Geolocation } from '../../models/geolocation';
 import { Location } from '../../models/location';
 import { ForecastService } from '../../services/forecast.service';
 import { GeolocationService } from '../../services/geolocation.service';
@@ -12,6 +14,7 @@ import { UserLocationService } from '../../services/user-location.service';
 
 enum ForecastReadStatus {
   None,
+  NoLocationFound,
   Loading,
   Error,
   FewLocations,
@@ -22,47 +25,15 @@ enum ForecastReadStatus {
   selector: 'app-forecast',
   templateUrl: './forecast.component.html',
   styleUrls: ['./forecast.component.css'],
-  animations: [
-    trigger('searchFormLoaded', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateX(-100px)' }),
-          animate('.3s ease-out', style({ opacity: 1, transform: 'none' }))
-      ])
-    ]),
-    trigger('weatherLoaded', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateX(-300px)' }),
-          animate('.3s ease-out', style({ opacity: 1, transform: 'none' }))
-      ])
-    ]),
-    trigger('fadeIn', [
-      transition(':enter', [
-        query('.fade-in-element', [
-          style({ opacity: '0' }),
-          stagger(50, [
-            animate('.3s ease-out', style({ opacity: 1 }))
-          ])
-        ])
-      ])
-    ]),
-    trigger('fadeSlideIn', [
-      transition(':enter', [
-        query('.location-list-element', [
-          style({ opacity: '0', transform: 'translateX(-100px)' }),
-          stagger(50, [
-            animate('.3s ease-out', style({ opacity: 1, transform: 'none' }))
-          ])
-        ])
-      ]),
-    ]),
-  ]
+  animations: weatherAnimations
 })
 export class ForecastComponent implements OnInit {
 
   readStatus = ForecastReadStatus.None;
-  location = new FormControl('');
+  location = new FormControl('', Validators.required);
   foundLocations = new Array<Location>();
 
+  locationName: string;
   selectedLocation: Location;
   currentForecast: CurrentForecast;
   dailyForecast = new Array<DayForecast>();
@@ -74,78 +45,83 @@ export class ForecastComponent implements OnInit {
     private forecastService: ForecastService) { }
 
   ngOnInit(): void {
-    this.getMyLocation();
+    this.readCurrentLocationWeather();
   }
 
-  getMyLocation() {
+  readCurrentLocationWeather() {
 
     this.readStatus = ForecastReadStatus.Loading;
 
     this.userLocationService.getUserLocation()
       .subscribe(geolocation => {
-        this.setLocation({
-          city: "Twoja aktualna lokalizacja",
-          county: "",
-          country: "",
-          longitude: 0,
-          latitude: 0
-        });
-        this.getForecast(geolocation.latitude, geolocation.longitude);
+        this.loadForecastForLocation(geolocation, "Twoja aktualna lokalizacja");
       }, error => {
+        console.log(error);
         this.readStatus = ForecastReadStatus.Error;
       });
   }
 
   searchLocations() {
 
-    if (!this.location.value)
-      return;
-
-    this.searchElement.nativeElement.blur();
-
+    this.unfocusSearchInput()
     this.readStatus = ForecastReadStatus.Loading;
 
     this.geolocationService.getGeolocation(this.location.value)
       .subscribe(geolocation => {
-        this.foundLocations = geolocation;
-        if (this.foundLocations.length > 1) {
+
+        if(this.checkIfNoLocationsFound(geolocation)) {
+          this.readStatus = ForecastReadStatus.NoLocationFound;
+          return;
+        }
+
+        if (geolocation.length > 1) {
+          this.foundLocations = geolocation;
           this.readStatus = ForecastReadStatus.FewLocations;
+          return;
         }
-        else {
-          this.setLocation(this.foundLocations[0]);
-          this.getForecast(
-            this.foundLocations[0].latitude,
-            this.foundLocations[0].longitude);
-        }
+        
+        this.loadForecastForLocation(geolocation[0], geolocation[0].city);
       }, error => {
         this.readStatus = ForecastReadStatus.Error;
       });
   }
 
-  locationClicked(location: Location) {
-    this.setLocation(location);
-    this.getForecast(location.latitude, location.longitude);
+  unfocusSearchInput() {
+    this.searchElement.nativeElement.blur();
   }
 
-  getForecast(latitude: number, longitude: number) {
+  checkIfNoLocationsFound(locations: Array<Location>) : boolean {
+    return (locations.length == 1 && locations[0] == undefined)
+      || locations.length == 0;
+  }
+
+  locationClicked(location: Location) {
+    this.loadForecastForLocation(location, location.city);
+  }
+
+  loadForecastForLocation(location: Geolocation, locationName: string) {
 
     this.readStatus = ForecastReadStatus.Loading;
 
     this.forecastService.getForecast(
-      latitude, longitude
+      location.latitude, location.longitude
     ).subscribe(forecast => {
+      this.locationName = locationName;
       this.currentForecast = forecast.current;
       this.dailyForecast = forecast.daily;
       this.readStatus = ForecastReadStatus.SingleLocation;
+    }, error => {
+      console.log(error);
+      this.readStatus = ForecastReadStatus.Error;
     });
-  }
-
-  setLocation(location: Location) {
-    this.selectedLocation = location;
   }
 
   showLoading(): boolean {
     return this.readStatus == ForecastReadStatus.Loading;
+  }
+
+  showNoLocationFound(): boolean {
+    return this.readStatus == ForecastReadStatus.NoLocationFound;
   }
 
   showFewLocations(): boolean {
